@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-btn {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      color: var(--primary-color);
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 120%;
+      left: 0;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border: 1px solid var(--border-color);
+      z-index: 1;
+      padding: 0.5rem 1rem;
+    }
+    .dropdown-content a {
+      display: block;
+      padding: 0.4rem 0;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+    .dropdown-content a:hover {
+      color: var(--accent-color);
+    }
+    .trending {
+      margin-bottom: 3rem;
+    }
+    :root {
+      --primary-color: #5c4033;
+      --accent-color: #d2a679;
+      --bg-light: #f5f2ed;
+      --text-dark: #3e2f20;
+      --text-light: #fff;
+      --border-color: #e0d5c0;
+    }
+
+    * {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+    }
+
+    header {
+      background-color: var(--text-light);
+      padding: 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    nav {
+      background-color: var(--text-light);
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    nav a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      background: linear-gradient(145deg, #fff, #f1e5d8);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      transition: all 0.3s ease-in-out;
+      position: relative;
+    }
+
+    nav a:hover {
+      background-color: var(--accent-color);
+      color: white;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+      padding: 2rem 5vw;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .product {
+  background: linear-gradient(135deg, #fffdf9, #f9f2e8);
+  border-radius: 15px;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+    .product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+    .product img:hover {
+  transform: scale(1.03);
+}
+
+    .product h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+    .product p {
+  font-size: 1rem;
+  color: #5c4033;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+    .product button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+    .product button:hover {
+  background-color: var(--primary-color);
+  transform: scale(1.07);
+}
+
+    footer {
+      background-color: var(--text-light);
+      color: #666;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+    }
+      .dropdown-btn:hover,
+    header h1:hover,
+    header button:hover,
+    header input:hover,
+    header span:hover {
+      animation: pulse 0.5s ease-in-out;
+    }
+
+    header h1 {
+      transition: transform 0.3s ease;
+    }
+
+    header h1:hover {
+      transform: scale(1.05);
+    }
+
+    .dropdown-btn {
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .dropdown-btn:hover {
+      color: var(--accent-color);
+      transform: scale(1.05);
+    }
+
+    header button {
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    header button:hover {
+      background-color: var(--primary-color);
+    }
+
+    header span {
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    header span:hover {
+      transform: scale(1.2);
+      color: var(--accent-color);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;">
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <h1 style="font-size: 2rem; color: var(--accent-color); margin: 0;">Artisan</h1>
+        <div class="dropdown">
+          <button onclick="toggleDropdown()" class="dropdown-btn">☰ Categories</button>
+          <div class="dropdown-content" id="dropdownContent">
+            <a href="#">Bags</a>
+            <a href="#">Home Decor</a>
+            <a href="#">Jewelry</a>
+            <a href="#">Wood Art</a>
+            <a href="#">Pottery</a>
+          </div>
+        </div>
+      </div>
+      <div style="flex-grow: 1; max-width: 600px; display: flex; align-items: center; background: white; border: 1px solid var(--border-color); border-radius: 30px; padding: 0.5rem 1rem; margin: 0 2rem;">
+        <input type="text" placeholder="Search for anything" style="border: none; flex: 1; font-size: 1rem; outline: none;">
+        <button onclick="performSearch()" style="background: var(--accent-color); border: none; color: white; padding: 0.4rem 0.8rem; border-radius: 50%; cursor: pointer;">🔍</button>
+      </div>
+      <div style="display: flex; align-items: center; gap: 1rem; font-size: 1.2rem;">
+        <a href="#" style="background-color: var(--accent-color); color: white; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.9rem; text-decoration: none; font-weight: 600; transition: background-color 0.3s ease;">Sign In</a>
+        <span>♡</span>
+        <span>🎁</span>
+        <span>🛒</span>
+      </div>
+    </div>
+  </header>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Cart</a>
+    <a href="#">Shop</a>
+    <a href="#">Login</a>
+    <a href="#">Register</a>
+  </nav>
+  <div class="category-scroll">
+  <div class="category-item">
+    <img src="https://via.placeholder.com/80?text=Bags" alt="Bags">
+    <span>Bags</span>
+  </div>
+  <div class="category-item">
+    <img src="https://via.placeholder.com/80?text=Decor" alt="Home Decor">
+    <span>Home Decor</span>
+  </div>
+  <div class="category-item">
+    <img src="https://via.placeholder.com/80?text=Bowls" alt="Bowls">
+    <span>Bowls</span>
+  </div>
+  <div class="category-item">
+    <img src="https://via.placeholder.com/80?text=Wood+Art" alt="Wood Art">
+    <span>Wood Art</span>
+  </div>
+  <div class="category-item">
+    <img src="https://via.placeholder.com/80?text=Jewelry" alt="Jewelry">
+    <span>Jewelry</span>
+  </div>
+  <div class="category-item">
+    <img src="https://via.placeholder.com/80?text=Mats" alt="Mats">
+    <span>Mats</span>
+  </div>
+  <div class="category-item">
+    <img src="https://via.placeholder.com/80?text=Stationery" alt="Stationery">
+    <span>Stationery</span>
+  </div>
+  <div class="category-item">
+    <img src="https://via.placeholder.com/80?text=Masks" alt="Masks">
+    <span>Masks</span>
+  </div>
+  <div class="category-item">
+    <img src="https://via.placeholder.com/80?text=Tableware" alt="Tableware">
+    <span>Tableware</span>
+  </div>
+  <div class="category-item">
+    <img src="https://via.placeholder.com/80?text=Pottery" alt="Pottery">
+    <span>Pottery</span>
+  </div>
+  <div class="category-item">
+    <img src="https://via.placeholder.com/80?text=Cards" alt="Cards">
+    <span>Cards</span>
+  </div>
+</div>
+
+  </div>
+
+  <style>
+    .category-scroll {
+      display: flex;
+      overflow-x: auto;
+      padding: 1rem 5vw;
+      gap: 1rem;
+      background-color: var(--text-light);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .category-item {
+      flex: 0 0 auto;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .category-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+      border: 2px solid var(--accent-color);
+    }
+
+    .category-item span {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    .category-item:hover {
+      transform: scale(1.05);
+    }
+  </style>
+  </style>
+
+    <section class="trending">
+      <h2 style="margin-bottom: 1rem; background: linear-gradient(to right, var(--accent-color), #f3d9b1); color: var(--primary-color); font-size: 2rem; font-weight: 700; padding: 0.75rem 1rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">🔥 Trending Now</h2>
+      <div class="product-grid" id="trendingGrid"></div>
+    </section>
+
+    <h2 style="margin-bottom: 1.5rem; background: linear-gradient(to right, var(--accent-color), #f3d9b1); color: var(--primary-color); font-size: 2rem; font-weight: 700; padding: 0.75rem 1rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">✨ Featured Products</h2>
+    <div class="product-grid" id="productGrid"></div>
+  </main>
+  
+
+  <section style="background-color: #fef9ef; padding: 3rem 2rem; text-align: center;">
+    <h2 style="font-size: 2.2rem; background: linear-gradient(to right, var(--accent-color), #f3d9b1); color: var(--primary-color); font-weight: 700; margin-bottom: 1rem; padding: 0.75rem 1rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: inline-block;">What is Artisan?</h2>
+    <p style="margin-bottom: 2rem; font-style: italic; font-size: 1rem; color: var(--primary-color);">
+      Learn about our mission to support creativity, community, and ethical craftsmanship.
+    </p>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; max-width: 1000px; margin: 0 auto; text-align: left;">
+      <div style="flex: 1 1 300px;">
+        <h3 style="color: var(--primary-color); font-size: 1.1rem; margin-bottom: 0.5rem;">A community doing good</h3>
+        <p>Artisan is a platform where local creators come together to make, sell, and celebrate handcrafted products. We empower small businesses and support sustainability.</p>
+      </div>
+      <div style="flex: 1 1 300px;">
+        <h3 style="color: var(--primary-color); font-size: 1.1rem; margin-bottom: 0.5rem;">Support independent creators</h3>
+        <p>We connect you directly with makers. No warehouses — just passion, talent, and authenticity behind every item you find here.</p>
+      </div>
+      <div style="flex: 1 1 300px;">
+        <h3 style="color: var(--primary-color); font-size: 1.1rem; margin-bottom: 0.5rem;">Peace of mind</h3>
+        <p>Your trust matters. We prioritize your privacy and ensure every artisan follows transparent, secure selling practices.</p>
+      </div>
+    </div>
+    <div style="margin-top: 2rem;">
+      <p style="font-weight: bold; color: var(--primary-color);">Have a question? We’ve got answers.</p>
+      <button style="margin-top: 1rem; padding: 0.6rem 1.2rem; background-color: white; color: var(--primary-color); border: 2px solid var(--primary-color); border-radius: 30px; font-weight: bold; cursor: pointer;">Go to Help Center</button>
+    </div>
+  <footer>
+    &copy; 2025 Artisan Market Sri Lanka. All rights reserved.
+  </footer>
+
+<script>
+    const products = [
+      { name: 'Batik Tote Bag', price: 'Rs. 1,800', image: 'https://via.placeholder.com/250x150?text=Tote+Bag' },
+      { name: 'Handwoven Mat', price: 'Rs. 3,200', image: 'https://via.placeholder.com/250x150?text=Mat' },
+      { name: 'Coconut Shell Bowl', price: 'Rs. 950', image: 'https://via.placeholder.com/250x150?text=Bowl' },
+      { name: 'Wood Carved Elephant', price: 'Rs. 2,500', image: 'https://via.placeholder.com/250x150?text=Elephant' },
+      { name: 'Handmade Jewelry Set', price: 'Rs. 3,000', image: 'https://via.placeholder.com/250x150?text=Jewelry' },
+      { name: 'Coir Door Mat', price: 'Rs. 1,200', image: 'https://via.placeholder.com/250x150?text=Door+Mat' },
+      { name: 'Bamboo Pen Holder', price: 'Rs. 650', image: 'https://via.placeholder.com/250x150?text=Pen+Holder' },
+      { name: 'Traditional Mask', price: 'Rs. 4,000', image: 'https://via.placeholder.com/250x150?text=Mask' },
+      { name: 'Lace Table Runner', price: 'Rs. 2,200', image: 'https://via.placeholder.com/250x150?text=Table+Runner' },
+      { name: 'Clay Flower Pot', price: 'Rs. 900', image: 'https://via.placeholder.com/250x150?text=Flower+Pot' },
+      { name: 'Hand-painted Greeting Cards', price: 'Rs. 450', image: 'https://via.placeholder.com/250x150?text=Cards' }
+    ];
+
+    const trendingGrid = document.getElementById('trendingGrid');
+
+    const trendingItems = products.slice(0, 4);
+
+    trendingItems.forEach(product => {
+      const div = document.createElement('div');
+      div.classList.add('product');
+      div.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" />
+        <h3>${product.name}</h3>
+        <p>${product.price}</p>
+        <button>Add to Cart</button>
+      `;
+      trendingGrid.appendChild(div);
+    });
+
+    const productGrid = document.getElementById('productGrid');
+
+    products.forEach(product => {
+      const div = document.createElement('div');
+      div.classList.add('product');
+      div.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" />
+        <h3>${product.name}</h3>
+        <p>${product.price}</p>
+        <button>Add to Cart</button>
+      `;
+      productGrid.appendChild(div);
+    });
+  
+
+    function performSearch() {
+      const input = document.querySelector('input[type="text"]').value.toLowerCase();
+      const filteredProducts = products.filter(p => p.name.toLowerCase().includes(input));
+
+      productGrid.innerHTML = '';
+      filteredProducts.forEach(product => {
+        const div = document.createElement('div');
+        div.classList.add('product');
+        div.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" />
+          <h3>${product.name}</h3>
+          <p>${product.price}</p>
+          <button>Add to Cart</button>
+        `;
+        productGrid.appendChild(div);
+      });
+    }
+
+
+    function toggleDropdown() {
+      const dropdown = document.getElementById('dropdownContent');
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+</body>
+</html>
